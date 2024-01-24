@@ -10,10 +10,16 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserSignUpDto } from './dto/user-signup.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Post('signup')
+  signup(@Body() userSignUpDto: UserSignUpDto) {
+    return this.usersService.signup(userSignUpDto);
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
