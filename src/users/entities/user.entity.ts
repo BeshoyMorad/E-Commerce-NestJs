@@ -1,4 +1,4 @@
-import { Roles } from 'src/utility/common/user-roles.enum';
+import { UserRoles } from 'src/utility/common/user-roles.enum';
 import {
   Column,
   CreateDateColumn,
@@ -24,11 +24,11 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: Roles,
+    enum: UserRoles,
     array: true,
-    default: [Roles.User],
+    default: [UserRoles.User],
   })
-  roles: Roles[];
+  roles: UserRoles[];
 
   @CreateDateColumn()
   createdAt: Timestamp;

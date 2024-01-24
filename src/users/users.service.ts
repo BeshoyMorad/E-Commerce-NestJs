@@ -72,9 +72,6 @@ export class UsersService {
     return sign(
       {
         id: user.id,
-        name: user.name,
-        email: user.email,
-        roles: user.roles,
       },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRE_TIME },

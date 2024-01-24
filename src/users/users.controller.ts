@@ -6,12 +6,16 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSignUpDto } from './dto/user-signup.dto';
 import { UserSigInDto } from './dto/user-signin.dto';
+import { AuthenticationGuard } from 'src/utility/guards/authentication.guard';
+import { UserRoles } from 'src/utility/common/user-roles.enum';
+import { AuthorizationGuard } from 'src/utility/guards/authorization.guard';
 
 @Controller('users')
 export class UsersController {
@@ -36,6 +40,7 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(AuthenticationGuard, AuthorizationGuard([UserRoles.Admin]))
   findAll() {
     return this.usersService.findAll();
   }
