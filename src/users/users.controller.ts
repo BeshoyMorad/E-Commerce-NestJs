@@ -11,6 +11,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSignUpDto } from './dto/user-signup.dto';
+import { UserSigInDto } from './dto/user-signin.dto';
 
 @Controller('users')
 export class UsersController {
@@ -19,6 +20,14 @@ export class UsersController {
   @Post('signup')
   signup(@Body() userSignUpDto: UserSignUpDto) {
     return this.usersService.signup(userSignUpDto);
+  }
+
+  @Post('signin')
+  async signin(@Body() userSignInDto: UserSigInDto) {
+    const user = await this.usersService.signin(userSignInDto);
+    const token = this.usersService.accessToken(user);
+
+    return { user, token };
   }
 
   @Post()

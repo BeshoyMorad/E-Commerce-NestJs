@@ -5,7 +5,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserSignUpDto } from './dto/user-signup.dto';
-import { hash } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
+import { UserSigInDto } from './dto/user-signin.dto';
+import { sign } from 'jsonwebtoken';
 
 @Injectable()
 export class UsersService {
@@ -36,6 +38,43 @@ export class UsersService {
     delete newUser.password;
 
     return newUser;
+  }
+
+  async signin(userSignInDto: UserSigInDto) {
+    const userExists = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect(['user.password'])
+      .where('user.email = :email', { email: userSignInDto.email })
+      .getOne();
+
+    if (!userExists) {
+      throw new BadRequestException('Wrong email or password');
+    }
+
+    const matchPasswords = await compare(
+      userSignInDto.password,
+      userExists.password,
+    );
+
+    if (!matchPasswords) {
+      throw new BadRequestException('Wrong email or password');
+    }
+
+    delete userExists.password;
+    return userExists;
+  }
+
+  accessToken(user: User): string {
+    return sign(
+      {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        roles: user.roles,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE_TIME },
+    );
   }
 
   create(createUserDto: CreateUserDto) {
