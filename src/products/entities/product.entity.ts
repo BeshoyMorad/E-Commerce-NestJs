@@ -1,18 +1,17 @@
-import { Product } from 'src/products/entities/product.entity';
+import { Category } from 'src/categories/entities/category.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class Category {
+export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,15 +21,24 @@ export class Category {
   @Column()
   description: string;
 
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  price: number;
+
+  @Column()
+  stock: number;
+
+  @Column('simple-array')
+  images: string[];
+
   @CreateDateColumn()
   createdAt: Timestamp;
 
   @UpdateDateColumn()
   updatedAt: Timestamp;
 
-  @ManyToOne(() => User, (user) => user.categories)
+  @ManyToOne(() => User, (user) => user.products)
   addedBy: User;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products: Product[];
+  @ManyToOne(() => Category, (category) => category.products)
+  category: Category;
 }

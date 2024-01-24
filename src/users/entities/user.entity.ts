@@ -1,4 +1,5 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { Product } from 'src/products/entities/product.entity';
 import { UserRoles } from 'src/utility/common/user-roles.enum';
 import {
   Column,
@@ -40,4 +41,7 @@ export class User {
 
   @OneToMany(() => Category, (category) => category.addedBy)
   categories: Category[];
+
+  @OneToMany(() => Product, (product) => product.addedBy)
+  products: Product[];
 }

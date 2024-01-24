@@ -25,8 +25,8 @@ export class CategoriesService {
     return this.categoryRepository.find();
   }
 
-  findOne(id: number) {
-    const category = this.categoryRepository.findOne({
+  async findOne(id: number) {
+    const category = await this.categoryRepository.findOne({
       where: { id },
       relations: { addedBy: true },
       select: {
@@ -59,6 +59,6 @@ export class CategoriesService {
   }
 
   remove(id: number) {
-    return this.categoryRepository.delete({ id });
+    return `This action removes a #${id} category`;
   }
 }
