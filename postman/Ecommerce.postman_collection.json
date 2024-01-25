@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "d1ce87fb-f160-4638-b232-c97343d5c4e3",
+		"name": "Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21286126"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Philip\",\r\n    \"email\": \"philip@gmail.com\",\r\n    \"password\": \"12589\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						},
+						"description": "## API POST /api/users/signup\n\nThis endpoint is used to sign up a new user.\n\n### Request Body\n\n- `name` (string, required): The name of the user.\n- `email` (string, required): The email of the user.\n- `password` (string, required): The password for the user.\n    \n\n### Response\n\n- Status: 201 Created\n- Content-Type: application/json\n- Body:\n    \n    ``` json\n    {\n      \"name\": \"\",\n      \"email\": \"\",\n      \"id\": 0,\n      \"roles\": [\"\"],\n      \"createdAt\": \"\",\n      \"updatedAt\": \"\"\n    }\n    \n     ```\n    \n\nThe response contains the newly created user's details including the user's name, email, unique ID, roles, creation timestamp, and update timestamp."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MTgzMDkxLCJleHAiOjE3MDYxODQ4OTF9.X33KCqb4PG47k_wAY3hbf_z3V26iQ-M6Sl765gP5BZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This endpoint sends an HTTP GET request to retrieve a list of users from the server.\n\nThe response will have a status code of 200, indicating a successful request, and the content type will be in JSON format. The response will include an array of user objects, where each user object contains the following properties:\n\n- id: The unique identifier of the user.\n- name: The name of the user.\n- email: The email address of the user.\n- roles: An array of roles assigned to the user.\n- createdAt: The timestamp indicating when the user was created.\n- updatedAt: The timestamp indicating when the user was last updated."
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"beshoy@gmail.com\",\r\n    \"password\": \"12589\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signin"
+							]
+						},
+						"description": "\n    \n### Sign In User\nThis endpoint allows users to sign in by providing their email and password.\n\n#### Request Body\n- `email` (string, required): The email address of the user.\n- `password` (string, required): The password of the user.\n\n#### Response\n- Status: 201\n- Content-Type: application/json\n- `user` (object): Details of the signed-in user, including their id, name, email, roles, createdAt, and updatedAt.\n- `token` (string): Authentication token for the signed-in user.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						},
+						"description": "This endpoint retrieves user information based on the provided user ID.\n\n### Request\n\n#### HTTP GET\n\n```\nhttp://localhost:3000/api/users/2\n\n ```\n\n### Response\n\n- Status: 200\n- Content-Type: application/json\n    \n\n``` json\n{\n    \"id\": 0,\n    \"name\": \"\",\n    \"email\": \"\",\n    \"roles\": [\"\"],\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\"\n}\n\n ```\n\nAdd documentation"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MTgzMDkxLCJleHAiOjE3MDYxODQ4OTF9.X33KCqb4PG47k_wAY3hbf_z3V26iQ-M6Sl765gP5BZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Category 4\",\r\n    \"description\": \"Category details\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories"
+							]
+						},
+						"description": "### Add Category\n\nThis endpoint allows you to add a new category.\n\n#### Request Body\n\n- `title` (string, required): The title of the category.\n- `description` (string, required): The description of the category.\n    \n\n#### Response\n\n- Status: 201 Created\n- Content-Type: application/json\n    \n\nExample response body:\n\n``` json\n{\n  \"title\": \"\",\n  \"description\": \"\",\n  \"addedBy\": {\n    \"id\": 0,\n    \"name\": \"\",\n    \"email\": \"\",\n    \"roles\": [\"\"],\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\"\n  },\n  \"id\": 0,\n  \"createdAt\": \"\",\n  \"updatedAt\": \"\"\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get one Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/categories/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"4"
+							]
+						},
+						"description": "# Get Category by ID\n\nThis endpoint retrieves a specific category by its ID.\n\n## Request\n\n### Endpoint\n\n`GET /api/categories/4`\n\n## Response\n\n- Status: 200\n- Content-Type: application/json\n    \n\n``` json\n{\n    \"id\": 0,\n    \"title\": \"\",\n    \"description\": \"\",\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"addedBy\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"email\": \"\"\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Find all Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of categories from the server.\n\n### Request\n\n`GET /api/categories`\n\n### Response\n\n- Status: 200\n- Content-Type: application/json\n    \n\nThe response will contain an array of objects, where each object represents a category. Each category object will have the following properties:\n\n- `id` (number): The unique identifier for the category.\n- `title` (string): The title of the category.\n- `description` (string): The description of the category.\n- `createdAt` (string): The timestamp indicating when the category was created.\n- `updatedAt` (string): The timestamp indicating when the category was last updated."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MTgzMDkxLCJleHAiOjE3MDYxODQ4OTF9.X33KCqb4PG47k_wAY3hbf_z3V26iQ-M6Sl765gP5BZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Category 1\",\r\n    \"description\": \"Category details\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						},
+						"description": "This endpoint makes an HTTP PATCH request to update the category with the specified ID. The request should include a payload with the updated title and description in the raw request body.\n\n### Request Body\n\n- title (string, required): The updated title of the category.\n- description (string, required): The updated description of the category.\n    \n\n### Response\n\nUpon successful execution, the endpoint returns a status code of 200 and a JSON object with the updated category details, including the ID, title, description, createdAt, and updatedAt timestamps."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MTgzMDkxLCJleHAiOjE3MDYxODQ4OTF9.X33KCqb4PG47k_wAY3hbf_z3V26iQ-M6Sl765gP5BZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product 3\",\r\n    \"description\": \"Product description\",\r\n    \"price\": 15.66,\r\n    \"stock\": 15,\r\n    \"images\": [\"Image1\", \"Image2\"],\r\n    \"categoryId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "### Add a Product\n\nThis endpoint allows you to add a new product to the database.\n\n#### Request Body\n\n- `title` (string, required): The title of the product.\n- `description` (string, required): A brief description of the product.\n- `price` (string, required): The price of the product.\n- `stock` (number, required): The available stock of the product.\n- `images` (array of strings, required): An array of image URLs for the product.\n- `categoryId` (number, required): The ID of the category to which the product belongs.\n    \n\n#### Response\n\n- Status: 201 Created\n- Content-Type: application/json\n    \n\n##### Sample Response Body\n\n``` json\n{\n    \"title\": \"\",\n    \"description\": \"\",\n    \"price\": \"\",\n    \"stock\": 0,\n    \"images\": [\"\"],\n    \"addedBy\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"email\": \"\",\n        \"roles\": [\"\"],\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\"\n    },\n    \"category\": {\n        \"id\": 0,\n        \"title\": \"\",\n        \"description\": \"\",\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"addedBy\": {\n            \"id\": 0,\n            \"name\": \"\",\n            \"email\": \"\"\n        }\n    },\n    \"id\": 0,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\"\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Find all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "This endpoint sends an HTTP GET request to retrieve a list of products from the server.\n\nThe response will have a status code of 200 and a content type of application/json. The response body will contain an array of product objects, where each product has an id, title, description, price, stock, images, createdAt, and updatedAt properties.\n\nExample response:\n\n``` json\n[\n    {\n        \"id\": 0,\n        \"title\": \"\",\n        \"description\": \"\",\n        \"price\": \"\",\n        \"stock\": 0,\n        \"images\": [\"\"],\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\"\n    }\n]\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Find one product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/products/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve product information with the specified ID. The response will be in JSON format and will include details such as the product ID, title, description, price, stock, images, creation and update timestamps, as well as information about the user who added the product and the category to which it belongs."
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Images array should not be empty\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.images).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Images array should not be empty\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA2MTEwODg5LCJleHAiOjE3MDYxMTI2ODl9.WNI09msFnVyvgi-L-kxuhxxwoovZJWTKvyIB0W5Orxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product 2\",\r\n    \"description\": \"Product description\",\r\n    \"price\": 16.76,\r\n    \"stock\": 20,\r\n    \"images\": [\"Image1\", \"Image2\"],\r\n    \"categoryId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/products/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						},
+						"description": "### Update Product Details\n\nThis endpoint allows you to update the details of a specific product.\n\n#### Request\n\n- Method: PATCH\n- URL: `http://localhost:3000/api/products/2`\n- Headers:\n    - Content-Type: application/json\n- Body (raw, JSON):\n    \n    ``` json\n        {\n          \"title\": \"\",\n          \"description\": \"\",\n          \"price\": 0,\n          \"stock\": 0,\n          \"images\": [\"\"],\n          \"categoryId\": 0\n        }\n    \n     ```\n    \n\n#### Response\n\n- Status: 200\n- Content-Type: application/json\n- Body:\n    \n    ``` json\n        {\n          \"id\": 0,\n          \"title\": \"\",\n          \"description\": \"\",\n          \"price\": 0,\n          \"stock\": 0,\n          \"images\": [\"\"],\n          \"createdAt\": \"\",\n          \"updatedAt\": \"\",\n          \"category\": {\n            \"id\": 0,\n            \"title\": \"\",\n            \"description\": \"\",\n            \"createdAt\": \"\",\n            \"updatedAt\": \"\",\n            \"addedBy\": {\n              \"id\": 0,\n              \"name\": \"\",\n              \"email\": \"\"\n            }\n          }\n        }\n    \n     ```\n    \n\n#### Sample Usage\n\n``` bash\ncurl -X PATCH \"http://localhost:3000/api/products/2\" -H \"Content-Type: application/json\" -d '{\"title\":\"\",\"description\":\"\",\"price\":0,\"stock\":0,\"images\":[\"\"],\"categoryId\":0}'\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": []
+		}
+	]
+}
