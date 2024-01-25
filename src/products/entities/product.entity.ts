@@ -1,10 +1,12 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Timestamp,
   UpdateDateColumn,
@@ -41,4 +43,7 @@ export class Product {
 
   @ManyToOne(() => Category, (category) => category.products)
   category: Category;
+
+  @OneToMany(() => Review, (review) => review.product)
+  reviews: Review[];
 }
